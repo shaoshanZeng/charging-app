@@ -2,9 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-import HelloWorld from '@/components/HelloWorld.vue'
 
-const scrollBehavior = function(to, from, savedPosition) {
+const scrollBehavior = function (to, from, savedPosition) {
     if (savedPosition) {
         return savedPosition
     } else {
@@ -19,7 +18,12 @@ export default new Router({
     scrollBehavior,
     mode: 'history',
     routes: [
-        { path: '/helloword', component: HelloWorld }
+        { path: '/', component: () => import('@/views/home') },
+        { path: '/list', component: () => import('@/views/list') },
+        { path: '/list/detail', component: () => import('@/views/list/detail') },
+        { path: '/my', component: () => import('@/views/my') }
+
+
     ]
 }
 )
