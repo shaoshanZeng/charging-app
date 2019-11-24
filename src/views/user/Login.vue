@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <div class="logo">
-        <img src="http://img.cixi518.com/ljh_logo.jpeg" alt="default_logo" />
+        <img src="/" alt="logo" />
       </div>
     </div>
     <div class="content">
@@ -42,7 +42,7 @@ export default {
   name: "Login",
   data() {
     return {
-      phoneNumber: "13216698987",
+      phoneNumber: "13099999999",
       password: "123456",
       code: "",
       loginWay: "password",
@@ -67,18 +67,22 @@ export default {
       this.loginWay = this.loginWay === "password" ? "verifyCode" : "password";
     },
     handleLogin() {
-      const data = {
-        phoneNumber: this.phoneNumber,
-        password: this.password,
-        $router: this.$router,
-        $route: this.$route
-      };
-      this.login(data);
+      // const data = {
+      //   phoneNumber: this.phoneNumber,
+      //   password: this.password,
+      //   $router: this.$router,
+      //   $route: this.$route
+      // };
+      this.login();
     },
-    ...mapActions({
-      login: "user/login"
-    })
+    // ...mapActions({
+    //   login: "user/login"
+    // })
+    login() {
+      this.$router.push("/");
+    }
   },
+
   computed: {
     loginWayObj: function() {
       if (this.loginWay === "password") {
@@ -104,7 +108,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .header {
   width: 100%;
   height: 165px;

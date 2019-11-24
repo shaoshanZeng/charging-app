@@ -1,0 +1,18 @@
+const state = {
+    sidewidth: "200px"
+}
+
+const mutations = {
+    SET_SIDEWIDTH: (state, sidewidth) => {
+        state.sidewidth = sidewidth;
+    },
+}
+const actions = {
+
+}
+export default {
+    namespaced: true,
+    state,
+    mutations,
+    actions,
+};

@@ -44,7 +44,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style scoped>
 .verify-btn{
     padding: 0 5px;
     min-width: 6.5em;
