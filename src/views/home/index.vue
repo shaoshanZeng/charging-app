@@ -1,5 +1,7 @@
 
 <style scoped>
+.mt15{margin-top:15px;}
+
 .box {
   border: 1px solid #ddd;
   height: 100px;
@@ -7,40 +9,83 @@
 }
 </style><template>
   <div>
-    首页
-    {{$store}}
-    <!-- <Swiper :title="title" :clickItem="clickChildItem" /> -->
-    <!-- 子组件获取父组件的方法 2-->
-    <!-- <Swiper :title="title" @clickItem="clickChildItem" /> -->
-    <!-- 子组件获取父组件的方法 3-->
+    <van-sticky>
+      <van-search
+        v-model="value"
+        placeholder="请输入搜索关键词"
+        show-action
+        shape="round"
+        @search="onSearch"
+      >
+        <div slot="action" @click="onSearch">搜索</div>
+      </van-search>
+    </van-sticky>
     <Swiper :title="title" @click-item="clickChildItem" />
-    <div
-      class="box"
-      :style="{width:$store.getters.sildewidth+'px'}"
-    >我是一个宽度为{{$store.getters.sildewidth}}的矩形</div>
-    <button @click="changeBox">改变矩形宽度</button>
+     <van-grid class="mt15">
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+    </van-grid>
+    <div  class="mt15">
+      <van-skeleton title avatar :row="3" :loading="loading">
+        <div>{{ actItem }}</div>
+      </van-skeleton>
+    </div>
+    <div>
+      {{$store.getters.sildewidth}}
+    </div>
     <Footer />
   </div>
 </template>
 <script>
 import Footer from "@/components/layout/Bottom.vue";
 import Swiper from "./components/Swiper.vue";
+import { 
+  Sticky,
+  Search,
+  Skeleton,
+  Grid,
+  GridItem,
+  Row,
+  Col
+} from "vant";
 export default {
   components: {
     Swiper,
-    Footer
+    Footer,
+    
+    [Sticky.name]: Sticky,
+    [Search.name]: Search,
+    [Skeleton.name]: Skeleton,
+    [Grid.name]: Grid,
+    [GridItem.name]: GridItem,
+    [Row.name]: Row,
+    [Col.name]: Col
   },
   data() {
     return {
+       value: "",
+      loading: true,
+      actItem: "",
       title: "我是父组件的title属性"
     };
   },
+  mounted(){
+     setTimeout(() => {
+      this.actItem = "实际内容";
+      this.loading = false;
+    }, 200);
+  },
   methods: {
     changeBox() {
-      this.$store.commit("SET_SIDEWIDTH", "64px");
+      this.$store.commit("user/SET_SIDEWIDTH", "64px");
     },
     clickChildItem(sayhi) {
       alert("你点击了父组件的方法,并且子组件还向父组件说了：" + sayhi);
+    },
+    onSearch(){
+
     }
   }
 };

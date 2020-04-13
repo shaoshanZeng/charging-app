@@ -1,0 +1,9 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.page .page-main {
+  height: calc(100% - 100px);
+  overflow-y: auto;
+}
