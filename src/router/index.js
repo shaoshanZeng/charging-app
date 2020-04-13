@@ -23,7 +23,7 @@ export default new Router({
         { path: '/list/detail', component: () => import('@/views/list/detail') },
         { path: '/my', component: () => import('@/views/my') },
         { path: '/user/login', component: () => import('@/views/user/Login') },
-        { path: '/add', component: () => import('@/views//add') }
+        { path: '/add', component: () => import('@/views/add') }
 
 
     ]

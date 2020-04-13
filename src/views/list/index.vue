@@ -84,7 +84,7 @@ export default {
 		// 去详情页
 		goToDetail(id) {
 			console.log(id)
-			this.$router.push({ path: '/detail', query: { id: id } })
+			this.$router.push({ path: '/list/detail', query: { id: id } })
 		},
 
 		onLoad() {
