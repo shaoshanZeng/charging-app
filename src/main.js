@@ -12,10 +12,14 @@ FastClick.attach(document.body)
 import VueScroller from 'vue-scroller'
 Vue.use(VueScroller)
 
+// rem适配
+import 'amfe-flexible';
+
 // 加载样式初始化
 // import 'vant/lib/index.css';
 import 'normalize.css/normalize.css'
 import '@/assets/styles/common.css'
+
  
 import axios from 'axios'
 Vue.prototype.$axios = axios;

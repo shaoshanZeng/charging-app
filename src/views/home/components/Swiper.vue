@@ -23,7 +23,7 @@
         <van-image
           lazy-load
           fit="contain"
-          width="320"
+          width="100%"
           height="220"
           src="https://img.yzcdn.cn/vant/apple-1.jpg"
         />
@@ -32,7 +32,7 @@
         ><van-image
           lazy-load
           fit="contain"
-          width="320"
+          width="100%"
           height="220"
           src="https://img.yzcdn.cn/vant/apple-2.jpg"
         />

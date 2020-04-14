@@ -1,17 +1,10 @@
 <style lang="less" scoped>
 .list-container {
 	.van-card__content {
-		text-align: left;
-		.van-card__title {
-			font-size: 16px;
-			line-height: 25px;
-			margin-bottom: 20px;
-			max-height: auto;
-		}
-	}
+		text-align: left;}
 
 	.add-btn {
-		font-size: 50px;
+		font-size: 40px;
 		position: fixed;
 		right: 10px;
 		bottom: 60px;
