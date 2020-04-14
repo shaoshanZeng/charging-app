@@ -1,7 +1,8 @@
 <style lang="less" scoped>
 .list-container {
 	.van-card__content {
-		text-align: left;}
+		text-align: left;
+	}
 
 	.add-btn {
 		font-size: 40px;
@@ -79,6 +80,9 @@ export default {
 			console.log(id)
 			this.$router.push({ path: '/list/detail', query: { id: id } })
 		},
+
+		
+
 
 		onLoad() {
 			setTimeout(() => {

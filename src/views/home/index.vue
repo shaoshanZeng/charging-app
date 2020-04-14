@@ -1,15 +1,22 @@
 
 <style  lang="less">
-.home-container{ 
-   
+.home-container {
 }
 </style>
 <template>
 	<div class="page home-container">
 		<!-- 顶部 -->
 		<div class="page-header">
-			<van-search class="header-search" v-model="value" placeholder="请输入搜索关键词" show-action   background="#4fc08d" shape="round" @search="onSearch">
-				<div slot="action" @click="onSearch" >搜索</div>
+			<van-search
+				class="header-search"
+				v-model="value"
+				placeholder="请输入搜索关键词"
+				show-action
+				background="#4fc08d"
+				shape="round"
+				@search="onSearch"
+			>
+				<div slot="action" @click="onSearch">搜索</div>
 			</van-search>
 		</div>
 		<!-- 主体内容 -->
@@ -21,12 +28,11 @@
 				<van-grid-item icon="photo-o" text="文字" />
 				<van-grid-item icon="photo-o" text="文字" />
 			</van-grid>
-			<div class="mt15" style="height:500px;">
+			<div class="mt15">
 				<van-skeleton title avatar :row="3" :loading="loading">
-					<div>{{ actItem }}</div>
+					<div>实际内容</div>
 				</van-skeleton>
-			</div>
-			<div>{{$store.getters.sildewidth}}</div>
+			</div> 
 		</div>
 		<!-- 底部 -->
 		<Footer />
@@ -69,7 +75,9 @@ export default {
 		setTimeout(() => {
 			this.actItem = "实际内容";
 			this.loading = false;
-		}, 200);
+		}, 1200);
+
+
 	},
 	methods: {
 		changeBox() {
@@ -80,7 +88,15 @@ export default {
 		},
 		onSearch() {
 
-		}
+		},
+		// 获取列表
+		async getPage() {
+			const data = await this.http.post('/sysuser/login', { "username": "2001", "password": "80c0bfe9baa01edaec755a26f8aea7b0" });
+			console.log(data);
+			if (data) {
+				this.Toast("登录成功")
+			}
+		},
 	}
 };
 </script>

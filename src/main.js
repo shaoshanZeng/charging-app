@@ -12,6 +12,7 @@ FastClick.attach(document.body)
 import VueScroller from 'vue-scroller'
 Vue.use(VueScroller)
 
+
 // rem适配
 import 'amfe-flexible';
 
@@ -22,7 +23,12 @@ import '@/assets/styles/common.css'
 
  
 import axios from 'axios'
+import http from '@/utils/http' 
+import { Toast  } from "vant"; 
+Vue.prototype.Toast = Toast;
 Vue.prototype.$axios = axios;
+Vue.prototype.http = http;
+
 
 import { Lazyload } from 'vant';
 Vue.use(Lazyload, {
