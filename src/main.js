@@ -21,15 +21,9 @@ import 'amfe-flexible';
 import 'normalize.css/normalize.css'
 import '@/assets/styles/common.css'
 
- 
-import axios from 'axios'
+  
 import http from '@/utils/http' 
-import { Toast  } from "vant"; 
-Vue.prototype.Toast = Toast;
-Vue.prototype.$axios = axios;
-Vue.prototype.http = http;
-
-
+Vue.prototype.http = http;  
 import { Lazyload } from 'vant';
 Vue.use(Lazyload, {
   lazyComponent: true

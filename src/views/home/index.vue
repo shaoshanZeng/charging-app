@@ -1,6 +1,7 @@
 
 <style  lang="less">
 .home-container {
+	.header-search{.van-cell{line-height:1;}}
 }
 </style>
 <template>

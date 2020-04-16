@@ -20,26 +20,24 @@
 			<van-nav-bar title="列表" />
 		</div>
 		<!-- 主体内容 -->
-		<div class="page-main">
-			<van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-				<van-list
-					v-model="loading"
-					:finished="finished"
-					finished-text="没有更多了"
-					:error.sync="error"
-					error-text="请求失败，点击重新加载"
-					@load="onLoad"
-				>
-					<van-card
-						v-for="(item,index) in dataList"
-						:key="index"
-						@click="goToDetail(1)"
-						desc="描述信息"
-						title="商品标题商品标题商品标题"
-						thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
-					/>
-				</van-list>
-			</van-pull-refresh>
+		<div class="page-main"> 
+			<van-list
+				v-model="loading"
+				:finished="finished"
+				finished-text="没有更多了"
+				:error.sync="error"
+				error-text="请求失败，点击重新加载"
+				@load="onLoad"
+			>
+				<van-card
+					v-for="(item,index) in dataList"
+					:key="index"
+					@click="goToDetail(1)"
+					desc="描述信息"
+					title="商品标题商品标题商品标题"
+					thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
+				/>
+			</van-list> 
 			<router-link to="/add" class="add-btn">
 				<van-icon name="add" />
 			</router-link>
@@ -65,10 +63,13 @@ export default {
 	data() {
 		return {
 			dataList: [],
-			error: false,
-			refreshing: false,
-			loading: false,
-			finished: false
+			error: false, 
+			finished: false,
+			loading:false,
+			// 分页
+			total: 0,
+			pageNum: 0,
+			pageSize: 10
 		};
 	},
 	mounted() {
@@ -81,35 +82,35 @@ export default {
 			this.$router.push({ path: '/list/detail', query: { id: id } })
 		},
 
-		
 
 
-		onLoad() {
-			setTimeout(() => {
-				if (this.refreshing) {
-					this.dataList = [];
-					this.refreshing = false;
+
+		async onLoad() {
+			console.log("1")
+			this.pageNum = this.pageNum + 1;
+			let data = await this.http.post(`/work/queryWorkSheetList/${this.pageNum}/20`, { "status": "", "bxjg": "", "cStatus": 0, "fwt": "28383b0320ce43558a7912158229845a", "isweb": 1 });
+			console.log(data); 
+			this.loading = false;
+			if (data) {
+				if (data.list.length > 0) {
+
+					if (this.pageNum > 1) {
+						this.dataList = this.dataList.concat(data.list);
+					} else {
+						this.dataList = data.list;
+					}
+					this.total = data.total;
+					// 是否加载完成
+					if (this.dataList.length == data.total) {
+						this.finished = true;
+					} else {
+						this.finished = false;
+					}
 				}
+			}
 
-				for (let i = 0; i < 10; i++) {
-					this.dataList.push(this.dataList.length + 1);
-				}
-				this.loading = false;
 
-				if (this.dataList.length >= 20) {
-					this.finished = true;
-				}
-			}, 1000);
-		},
-		onRefresh() {
-			// 清空列表数据
-			this.finished = false;
-
-			// 重新加载数据
-			// 将 loading 设置为 true，表示处于加载状态
-			this.loading = true;
-			this.onLoad();
-		}
+		} 
 	}
 };
 </script>
